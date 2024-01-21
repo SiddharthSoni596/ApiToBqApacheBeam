@@ -1,0 +1,24 @@
+## FOR DIRECT RUNNER
+
+mvn compile exec:java \
+ -P direct \
+ -Dexec.mainClass=org.pipeline.api_to_bigquery \
+ -Dexec.cleanupDaemonThreads=false \
+ -Dexec.args=" \
+ --runner=DirectRunner"
+
+## FOR DATAFLOW RUNNER
+ mvn compile exec:java \
+ -Pdataflow \
+ -Dexec.mainClass=org.pipeline.api_to_bigquery \
+ -Dexec.cleanupDaemonThreads=false \
+ -Dexec.args=" \
+ --project=burner-sidsoni1 \
+ --region=us-central1 \
+ --stagingLocation=gs://gcp-dataflow-java/stage \
+ --tempLocation=gs://gcp-dataflow-java/temp \
+ --runner=DataflowRunner"
+
+## FOR DATAFLOW FLEX BUILD AND RUN
+gcloud dataflow flex-template build gs://gcp-dataflow-java/templates/dataflow-api-to-bq.json --image-gcr-path="us-central1-docker.pkg.dev/burner-sidsoni1/dataflow-demo-repo/dataflow:latest" --sdk-language=JAVA --flex-template-base-image=JAVA11 --jar="/Users/siddharthsoni/IdeaProjects/jacksonPractice/target/ApiToBigQueryDataflow-bundled-1.0-SNAPSHOT.jar" --env=FLEX_TEMPLATE_JAVA_MAIN_CLASS="org.pipeline.api_to_bigquery" --project=burner-sidsoni1 --region="us-central1" --service-account-email="SERVICE-ACCOUNT@developer.gserviceaccount.com" --staging-location="gs://gcp-dataflow-java/stage" --temp-location="gs://gcp-dataflow-java/temp"
+gcloud dataflow flex-template run api-to-bq --template-file-gcs-location="gs://gcp-dataflow-java/templates/dataflow-api-to-bq.json" --project=PROJECT-ID --region=us-central1
