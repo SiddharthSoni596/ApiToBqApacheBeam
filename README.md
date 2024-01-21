@@ -31,3 +31,7 @@ clone the repository. |
 Run: mvn clean install inside cloned directory  |
 gcloud auth application-default login |
 mvn command for running in local/dataflow location: ***src/main/resources/essential_commands.txt*** |
+
+### Succesful Run!!
+![image](https://github.com/SiddharthSoni596/ApiToBqApacheBeam/assets/38645282/ca1f167b-5c7b-4f61-ac58-1f334112e663)
+
