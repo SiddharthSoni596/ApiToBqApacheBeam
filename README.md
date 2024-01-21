@@ -1,6 +1,6 @@
 # Beam pipeline from API Response to BigQuery table.
 ## The custom Apache Beam Java SDK for fetching the data from REST API to BigQuery using cloud dataflow. ##
-*	All the essential commands are included inside Resource directory.
+
 
 What we are doing basically:
 1.	Make the connection from java client.
